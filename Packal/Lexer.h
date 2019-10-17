@@ -221,8 +221,8 @@ private:
 private:
 	std::ifstream m_input;
 	std::vector<char> m_buffer;
-	uint64_t m_index{ 0 };
-	uint64_t m_size{ 0 };
+	size_t m_index{ 0 };
+	size_t m_size{ 0 };
 	bool m_finished{ false };
 
 	static constexpr uint64_t SIZE1KB = 1 << 10;
