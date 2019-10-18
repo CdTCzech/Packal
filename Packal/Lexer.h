@@ -26,6 +26,7 @@ public:
 		Const,
 		Begin,
 		End,
+		Array,
 		Integer,
 		Readln,
 		Writeln,
@@ -67,6 +68,8 @@ public:
 			return "Begin";
 		case Type::End:
 			return "End";
+		case Type::Array:
+			return "Array";
 		case Type::Integer:
 			return "Integer";
 		case Type::Readln:
@@ -91,7 +94,7 @@ public:
 		{
 			token = next();
 		}
-		catch (std::exception e)
+		catch (std::exception&)
 		{
 			token = { Type::Eof, {} };
 		}
@@ -109,6 +112,7 @@ private:
 			m_size = left + static_cast<uint32_t>(m_input.gcount());
 			m_index = 0;
 		}
+
 		if (m_input.eof() && m_size == 0)
 		{
 			throw std::exception("EOF");
@@ -223,7 +227,6 @@ private:
 	std::vector<char> m_buffer;
 	size_t m_index{ 0 };
 	size_t m_size{ 0 };
-	bool m_finished{ false };
 
 	static constexpr uint64_t SIZE1KB = 1 << 10;
 	static constexpr uint64_t SIZE64KB = 1 << 16;
